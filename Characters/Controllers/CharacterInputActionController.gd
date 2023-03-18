@@ -19,6 +19,9 @@ const CAMERA_MOUSE_TWEAK_SPEED = 0.0003
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func process_actions(delta: float, actions: CharacterActions) -> CharacterActions:
+	if ControlBlocker.are_controls_blocked():
+		return actions
+	
 	# Camera rotation
 	var camera_velocity = Input.get_last_mouse_velocity() * CAMERA_MOUSE_TWEAK_SPEED if camera_input_name == "mouse" else Vector2.ZERO
 	camera_velocity *= delta
