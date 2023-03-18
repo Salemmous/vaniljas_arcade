@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _pan_to_tampio(_controller: DialogController) -> void:
 	dialogs.close()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	normal_camera_target = camera.look_at_target
 	camera.look_at_target = tampio
 	camera.target_reached.connect(_panned_to_tampio)
@@ -55,15 +55,15 @@ func _on_interaction_area_interacted(_area: InteractionArea):
 		Dialog.following("Vanilja: Miten niin?",
 		Dialog.following("Tampio: Sinulla on erittäin tärkeä tehtävä.",
 		Dialog.following("Vanilja: Voisitko mitenkään olla tarkempi?",
-		Dialog.following("Tampio: No tosiaan, sinulla on kaksi tehtävä.",
+		Dialog.following("Tampio: No tosiaan, sinulla on kaksi tehtävää.",
 		Dialog.following("Tampio: Tärkein tehtäväsi on pitää Miska iloisena ja onnellisena.",
 		Dialog.following("Vanilja: En malta odottaa, että tutustun häneen!",
-		Dialog.following("Tampio: Toinen tehtäväsi on järjestää kettubileet.",
-		Dialog.following("Vanilja: Kettubileet? No sehän kuulostaa hyvältä!",
+		Dialog.following("Tampio: Toinen tehtäväsi on järjestää kettubileitä.",
+		Dialog.following("Vanilja: Kettubileitä? No sehän kuulostaa hyvältä!",
 		Dialog.following("Tampio: Niinpä. Mutta siihen muut ketut siellä alhaalla tarvitsevat apuasi.",
 		Dialog.following("Tampio: Heiltä puuttuu sipsejä...",
-		Dialog.following("Vanilja: Oi... sipisttömät kettubileet... Se kuulostaa melko pahalta!",
-		Dialog.following("Tampio: Melko paha on hyvä litootti, koska se on ihan hirveätä!",
+		Dialog.following("Vanilja: Oi... sipsittömät kettubileet... Se kuulostaa melko pahalta!",
+		Dialog.following("Tampio: Melko paha on hyvä litootti, koska se on hirveää!",
 		Dialog.following("Tampio: Luuletko että pystyt siihen?",
 		Dialog.following("Vanilja: Kyllä. Minä löydän kaikki sipsit, jotka tarvitaan kettubileisiin!",
 		Dialog.end("Tampio: Olet sitten valmis seikkailuusi. Onnea!",
