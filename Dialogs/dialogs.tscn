@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnams7sokc1xf"]
+
+[ext_resource type="Script" path="res://Dialogs/DialogController.gd" id="1_083x3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydvnx"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.419608)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0, 0, 0, 0.0352941)
+shadow_size = 5
+shadow_offset = Vector2(8, 8)
+
+[node name="Dialogs" type="NinePatchRect"]
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_083x3")
+
+[node name="DialogBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ydvnx")
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tämä on testi"
+scroll_active = false
+
+[node name="ControlBlockerTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="ControlBlockerTimer" to="." method="_on_release_controls"]

@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://bfat616ro3cm1"]
+
+[ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="1_bftju"]
+[ext_resource type="Script" path="res://Levels/FirstLevel.gd" id="1_ti2ln"]
+[ext_resource type="PackedScene" uid="uid://bwnxpvpfan6ik" path="res://Characters/Tampio/tampio.tscn" id="2_owc1e"]
+[ext_resource type="PackedScene" uid="uid://cnams7sokc1xf" path="res://Dialogs/dialogs.tscn" id="3_xpq0t"]
+[ext_resource type="PackedScene" uid="uid://6045ostqg8u" path="res://Misc/interaction_area.tscn" id="5_pwu28"]
+[ext_resource type="AudioStream" uid="uid://wf0etib3b4uf" path="res://Music/Pixabay-small-miracle-Romarecord1973.mp3" id="6_c1ivn"]
+[ext_resource type="PackedScene" uid="uid://dippt0egnecjl" path="res://Misc/pit.tscn" id="7_7i8sk"]
+[ext_resource type="PackedScene" uid="uid://ylfleu4m3bbn" path="res://Misc/fader.tscn" id="8_u0ok6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pqf8w"]
+
+[sub_resource type="Sky" id="Sky_pn6my"]
+sky_material = SubResource("ProceduralSkyMaterial_pqf8w")
+
+[sub_resource type="Environment" id="Environment_ql7lb"]
+background_mode = 2
+background_color = Color(0.466667, 0.756863, 0.901961, 1)
+sky = SubResource("Sky_pn6my")
+ambient_light_color = Color(0.517647, 0.517647, 0.517647, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 2.65
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_0dn2u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4djg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dnxu"]
+size = Vector3(3.55761, 4.50094, 3.95247)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfo0i"]
+radius = 0.997632
+height = 3.32635
+
+[node name="FirstLevel" type="Node3D"]
+script = ExtResource("1_ti2ln")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 7.14248, 0)
+light_energy = 1.715
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ql7lb")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, 0)
+mesh = SubResource("BoxMesh_0dn2u")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_c4djg")
+
+[node name="Ground2" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, 100)
+mesh = SubResource("BoxMesh_0dn2u")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground2"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2/StaticBody3D"]
+shape = SubResource("BoxShape3D_c4djg")
+
+[node name="Ground3" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, -100)
+mesh = SubResource("BoxMesh_0dn2u")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground3"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground3/StaticBody3D"]
+shape = SubResource("BoxShape3D_c4djg")
+
+[node name="CharacterController" parent="." instance=ExtResource("1_bftju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46.7198)
+
+[node name="Tampio" type="Node3D" parent="."]
+
+[node name="InteractionArea" parent="Tampio" instance=ExtResource("5_pwu28")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tampio/InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07942, 2.10942)
+shape = SubResource("BoxShape3D_7dnxu")
+
+[node name="Tampio" parent="Tampio" instance=ExtResource("2_owc1e")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tampio/Tampio"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tampio/Tampio/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0583966, 1.40464, 0.373175)
+shape = SubResource("CapsuleShape3D_tfo0i")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_c1ivn")
+volume_db = -30.0
+autoplay = true
+
+[node name="Pit" parent="." instance=ExtResource("7_7i8sk")]
+
+[node name="Respawn" type="Node3D" parent="Pit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.6271, 46.5641)
+
+[node name="Fader" parent="." instance=ExtResource("8_u0ok6")]
+
+[node name="Dialogs" parent="." instance=ExtResource("3_xpq0t")]
+offset_top = -128.0
+
+[connection signal="interacted" from="Tampio/InteractionArea" to="." method="_on_interaction_area_interacted"]
+[connection signal="player_respawned" from="Pit" to="." method="_on_pit_player_respawned"]
