@@ -1,13 +1,15 @@
+class_name CharacterController
 extends CharacterBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@export var character_rotation_speed := .5
+@export var character_rotation_speed := 5.5
 
 @onready var action_controller: CharacterActionController = $Actions
 @onready var state: CharacterState = $State
 @onready var camera_spring := $CameraSpring
+@onready var camera := $CameraSpring/Camera3D
 @onready var pawn: CharacterPawn = $Vanilja
 @onready var animation_player := $Vanilja/AnimationPlayer
 
@@ -31,8 +33,6 @@ func _physics_process(delta: float) -> void:
 	velocity = actions.velocity
 	var plane_velocity = Vector3(velocity.x, 0, velocity.z)
 	if plane_velocity.length():
-		var base_rotation = Quaternion(pawn.transform.basis)
-		var target_rotation = Quaternion(Basis.looking_at(plane_velocity))
-		pawn.transform.basis = Basis(base_rotation.slerp(target_rotation, character_rotation_speed))
+		pawn.transform.basis = pawn.transform.basis.slerp(Basis.looking_at(plane_velocity), delta * character_rotation_speed)
 	move_and_slide()
 	camera_spring.rotation = actions.camera_rotation

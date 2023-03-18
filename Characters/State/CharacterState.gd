@@ -15,10 +15,10 @@ func _ready() -> void:
 	children[0].enter(null)
 	current_state = children[0]
 
-func enter(previous: CharacterState) -> void:
+func enter(_previous: CharacterState) -> void:
 	pass
 	
-func exit(next: CharacterState) -> void:
+func exit(_next: CharacterState) -> void:
 	pass
 	
 func change_state(new_state_name: String) -> void:
@@ -36,7 +36,7 @@ func change_state(new_state_name: String) -> void:
 	current_state = new_state
 	new_state.enter(old_state)
 
-func process_actions(delta: float, actions: CharacterActions, parent: CharacterState) -> CharacterActions:
+func process_actions(delta: float, actions: CharacterActions, _parent: CharacterState) -> CharacterActions:
 	if current_state:
 		actions = current_state.process_actions(delta, actions, self)
 	return actions

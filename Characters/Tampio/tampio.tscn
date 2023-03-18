@@ -4,21 +4,28 @@
 
 [node name="tampio" instance=ExtResource("1_5mdxf")]
 
+[node name="metarig" parent="." index="0"]
+transform = Transform3D(1.65417, -0.367457, 0.22577, 0.371893, 1.6685, -0.00917758, -0.218387, 0.0579968, 1.69447, 0.606296, -0.193401, 0.336911)
+
 [node name="Skeleton3D" parent="metarig" index="0"]
-bones/0/position = Vector3(0, 1.1423, -0.0552)
-bones/1/rotation = Quaternion(-0.0524361, 0, 0, 0.998624)
-bones/5/rotation = Quaternion(0.0537887, 0, 0, 0.998552)
-bones/9/rotation = Quaternion(-0.171365, 0.704842, -0.53177, 0.437096)
-bones/10/rotation = Quaternion(0.0504816, -0.121119, -0.121011, 0.98394)
-bones/12/rotation = Quaternion(-0.0265845, 0.683707, 0.124758, 0.718522)
-bones/13/rotation = Quaternion(0.131046, 0.0129818, 0.0455972, 0.990242)
-bones/15/rotation = Quaternion(-0.205389, -0.714662, 0.557402, 0.369293)
-bones/16/rotation = Quaternion(0.0630476, 0.0923717, 0.062033, 0.991789)
-bones/18/rotation = Quaternion(0.0300185, -0.680976, -0.151097, 0.715919)
-bones/20/rotation = Quaternion(0.985635, 0.00445315, -0.00419479, 0.16878)
-bones/21/rotation = Quaternion(0.0595691, 0.00469171, 0.00961749, 0.998167)
-bones/24/rotation = Quaternion(0.985635, -0.00445305, 0.00419564, 0.16878)
-bones/25/rotation = Quaternion(0.0595691, -0.00469172, -0.00961748, 0.998167)
+bones/1/rotation = Quaternion(0.044256, -0.164287, 0.0633284, 0.983382)
+bones/2/rotation = Quaternion(-0.125341, -0.048286, 0.0224868, 0.990683)
+bones/3/rotation = Quaternion(0.0205235, -0.0510234, 0.0110438, 0.998425)
+bones/4/rotation = Quaternion(0.234178, 0.0058851, -0.00880922, 0.972136)
+bones/5/rotation = Quaternion(-0.138615, 0.00512316, -0.00427265, 0.990323)
+bones/6/rotation = Quaternion(-0.0942184, 0.0611534, -0.0533737, 0.992237)
+bones/9/rotation = Quaternion(0.504076, 0.358785, -0.546643, 0.564236)
+bones/10/rotation = Quaternion(0.414513, -0.0963249, 0.00783764, 0.904897)
+bones/11/rotation = Quaternion(0.117062, -0.0890643, 0.130561, 0.980468)
+bones/15/rotation = Quaternion(-0.0638308, -0.483006, 0.3247, 0.81068)
+bones/16/rotation = Quaternion(0.209678, 0.103497, -0.00396453, 0.97227)
+bones/17/rotation = Quaternion(0.0456046, 0.0753898, -0.0232046, 0.99584)
+bones/20/rotation = Quaternion(0.963751, -0.0984194, -0.0943294, 0.229347)
+bones/21/rotation = Quaternion(0.442648, -0.0825528, -0.0262002, 0.892503)
+bones/22/rotation = Quaternion(-0.317942, -0.0321995, 0.068638, 0.945074)
+bones/24/rotation = Quaternion(0.832679, -0.129742, 0.0711892, 0.533615)
+bones/25/rotation = Quaternion(0.533509, 0.0131837, 0.0788249, 0.84201)
+bones/26/rotation = Quaternion(-0.0704189, 0.199305, -0.0649235, 0.975245)
 
 [node name="AnimationPlayer" parent="." index="1"]
-autoplay = "Look Down"
+autoplay = "Twist Dance"

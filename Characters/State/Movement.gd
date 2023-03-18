@@ -15,10 +15,10 @@ const VELOCITY_TO_ANIMATION = 180
 
 var anim_speed = null
 
-func enter(previous: CharacterState) -> void:
+func enter(_previous: CharacterState) -> void:
 	animation_playback.travel("Movement")
 	
-func exit(next: CharacterState) -> void:
+func exit(_next: CharacterState) -> void:
 	anim_speed = null
 
 func process_actions(delta: float, actions: CharacterActions, parent: CharacterState) -> CharacterActions:
@@ -34,6 +34,6 @@ func process_actions(delta: float, actions: CharacterActions, parent: CharacterS
 		anim_speed =  target_speed
 	var warm_up = warm_up_speed if target_speed > anim_speed else warm_up_speed * deceleration_speed
 	var diff: float = target_speed - anim_speed
-	anim_speed = lerp(anim_speed, target_speed, delta * warm_up_speed) if diff < THRESHOLD or diff > 0 else target_speed
+	anim_speed = lerp(anim_speed, target_speed, delta * warm_up) if diff < THRESHOLD or diff > 0 else target_speed
 	animation_tree.set("parameters/Movement/blend_position", anim_speed)
 	return actions

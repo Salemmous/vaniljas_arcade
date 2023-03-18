@@ -20,6 +20,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func process_actions(delta: float, actions: CharacterActions) -> CharacterActions:
 	if ControlBlocker.are_controls_blocked():
+		actions.velocity.x = move_toward(actions.velocity.x, 0, speed)
+		actions.velocity.z = move_toward(actions.velocity.z, 0, speed)
 		return actions
 	
 	# Camera rotation
@@ -42,13 +44,11 @@ func process_actions(delta: float, actions: CharacterActions) -> CharacterAction
 	var camera_basis = Basis(Vector3.UP, actions.camera_rotation.y)
 	var direction = (camera_basis * (transform.basis * Vector3(input_dir.x, 0, input_dir.y))).normalized()
 	
-	var movement_speed = speed
-	
 	if direction:
-		actions.velocity.x = direction.x * movement_speed
-		actions.velocity.z = direction.z * movement_speed
+		actions.velocity.x = direction.x * speed
+		actions.velocity.z = direction.z * speed
 	else:
-		actions.velocity.x = move_toward(actions.velocity.x, 0, movement_speed)
-		actions.velocity.z = move_toward(actions.velocity.z, 0, movement_speed)
+		actions.velocity.x = move_toward(actions.velocity.x, 0, speed)
+		actions.velocity.z = move_toward(actions.velocity.z, 0, speed)
 	
 	return actions
