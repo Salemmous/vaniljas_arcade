@@ -13,6 +13,6 @@ script = ExtResource("1_mppyi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2j60y")
 
-[node name="Fade" parent="." instance=ExtResource("2_ld7hx")]
+[node name="Fader" parent="." instance=ExtResource("2_ld7hx")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
