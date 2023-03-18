@@ -3,7 +3,7 @@ extends Camera3D
 
 @export var look_at_target: Node
 @export var camera_speed := 4.0
-@export var target_reached_threshold := 0.02
+@export var target_reached_threshold := 0.002
 
 var target_reached_threshold_squared = target_reached_threshold * target_reached_threshold
 

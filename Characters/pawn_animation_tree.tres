@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=12 format=3 uid="uid://dvruqnbdo8f3g"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=14 format=3 uid="uid://dvruqnbdo8f3g"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0lwe"]
 animation = &"Falling"
@@ -32,27 +32,32 @@ max_space = 2.0
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aejwm"]
-xfade_time = 1.0
+xfade_time = 0.2
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rl3o5"]
-xfade_time = 1.0
+xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ar2w1"]
-xfade_time = 1.0
-advance_mode = 0
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fukru"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e1rev"]
+xfade_time = 0.1
 
 [resource]
 states/Falling/node = SubResource("AnimationNodeAnimation_i0lwe")
-states/Falling/position = Vector2(757, 167)
+states/Falling/position = Vector2(864, 197)
 "states/Jump Down/node" = SubResource("AnimationNodeAnimation_upt8d")
-"states/Jump Down/position" = Vector2(291, 192)
+"states/Jump Down/position" = Vector2(559, 260)
 "states/Jump Up/node" = SubResource("AnimationNodeAnimation_y1yh7")
-"states/Jump Up/position" = Vector2(608, 167)
+"states/Jump Up/position" = Vector2(727, 106)
 states/Movement/node = SubResource("AnimationNodeBlendSpace1D_ajk18")
 states/Movement/position = Vector2(511, 94)
-transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_j6rgy"), "Jump Up", "Falling", SubResource("AnimationNodeStateMachineTransition_aejwm"), "Jump Down", "Movement", SubResource("AnimationNodeStateMachineTransition_rl3o5"), "Movement", "Jump Up", SubResource("AnimationNodeStateMachineTransition_ar2w1")]
-graph_offset = Vector2(-57, -6)
+transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_j6rgy"), "Jump Up", "Falling", SubResource("AnimationNodeStateMachineTransition_aejwm"), "Jump Down", "Movement", SubResource("AnimationNodeStateMachineTransition_rl3o5"), "Movement", "Jump Up", SubResource("AnimationNodeStateMachineTransition_ar2w1"), "Falling", "Jump Down", SubResource("AnimationNodeStateMachineTransition_fukru"), "Falling", "Jump Up", SubResource("AnimationNodeStateMachineTransition_e1rev")]
+graph_offset = Vector2(-123, 64)

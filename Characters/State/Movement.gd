@@ -9,6 +9,8 @@ extends CharacterState
 @export var warm_up_speed := 2.0
 @export var deceleration_speed := 2.5
 
+var can_fall = false
+
 const THRESHOLD = -0.15
 
 const VELOCITY_TO_ANIMATION = 180
@@ -25,7 +27,7 @@ func process_actions(delta: float, actions: CharacterActions, parent: CharacterS
 	if actions.started_jump:
 		parent.change_state("Jump")
 		return actions
-	if not actions.is_on_ground:
+	if not actions.is_on_ground and can_fall:
 		parent.change_state("Fall")
 		return actions
 	var velocity = Vector3(actions.velocity.x, 0, actions.velocity.z)
@@ -37,3 +39,7 @@ func process_actions(delta: float, actions: CharacterActions, parent: CharacterS
 	anim_speed = lerp(anim_speed, target_speed, delta * warm_up) if diff < THRESHOLD or diff > 0 else target_speed
 	animation_tree.set("parameters/Movement/blend_position", anim_speed)
 	return actions
+
+
+func _on_time_before_fall_on_spawn_timeout():
+	can_fall = true

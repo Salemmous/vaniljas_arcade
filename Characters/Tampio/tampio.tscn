@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwnxpvpfan6ik"]
+[gd_scene load_steps=17 format=3 uid="uid://bwnxpvpfan6ik"]
 
 [ext_resource type="PackedScene" uid="uid://j0in8rw63qig" path="res://Characters/Tampio/tampio.glb" id="1_5mdxf"]
 [ext_resource type="Texture2D" uid="uid://dlyjakaj23tj4" path="res://Characters/Tampio/tampio_TampioSkin.png" id="2_5ow8a"]
@@ -71,33 +71,80 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1aobt"]
+animation = &"Look Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ri5a"]
+animation = &"Silly Dancing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d34hh"]
+animation = &"Twist Dance"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vcjlb"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbue7"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3my0"]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ftgmb"]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_la5mx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oa17m"]
+"states/Look Down/node" = SubResource("AnimationNodeAnimation_1aobt")
+"states/Look Down/position" = Vector2(697, 133)
+"states/Silly Dancing/node" = SubResource("AnimationNodeAnimation_0ri5a")
+"states/Silly Dancing/position" = Vector2(575, 36)
+"states/Twist Dance/node" = SubResource("AnimationNodeAnimation_d34hh")
+"states/Twist Dance/position" = Vector2(360, 123)
+transitions = ["Twist Dance", "Silly Dancing", SubResource("AnimationNodeStateMachineTransition_vcjlb"), "Silly Dancing", "Twist Dance", SubResource("AnimationNodeStateMachineTransition_nbue7"), "Silly Dancing", "Look Down", SubResource("AnimationNodeStateMachineTransition_f3my0"), "Twist Dance", "Look Down", SubResource("AnimationNodeStateMachineTransition_ftgmb"), "Start", "Twist Dance", SubResource("AnimationNodeStateMachineTransition_la5mx")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_87m3o"]
+
 [node name="tampio" instance=ExtResource("1_5mdxf")]
 
 [node name="metarig" parent="." index="0"]
-transform = Transform3D(1.65417, -0.367457, 0.22577, 0.371893, 1.6685, -0.00917758, -0.218387, 0.0579968, 1.69447, 0.606296, -0.193401, 0.336911)
+transform = Transform3D(1.69338, -0.115057, -0.203739, 0.138383, 1.69275, 0.19423, 0.188674, -0.208895, 1.68613, 0.0997214, -0.372916, 0.322241)
 
 [node name="Skeleton3D" parent="metarig" index="0"]
-bones/1/rotation = Quaternion(0.044256, -0.164287, 0.0633284, 0.983382)
-bones/2/rotation = Quaternion(-0.125341, -0.048286, 0.0224868, 0.990683)
-bones/3/rotation = Quaternion(0.0205235, -0.0510234, 0.0110438, 0.998425)
-bones/4/rotation = Quaternion(0.234178, 0.0058851, -0.00880922, 0.972136)
-bones/5/rotation = Quaternion(-0.138615, 0.00512316, -0.00427265, 0.990323)
-bones/6/rotation = Quaternion(-0.0942184, 0.0611534, -0.0533737, 0.992237)
-bones/9/rotation = Quaternion(0.504076, 0.358785, -0.546643, 0.564236)
-bones/10/rotation = Quaternion(0.414513, -0.0963249, 0.00783764, 0.904897)
-bones/11/rotation = Quaternion(0.117062, -0.0890643, 0.130561, 0.980468)
-bones/15/rotation = Quaternion(-0.0638308, -0.483006, 0.3247, 0.81068)
-bones/16/rotation = Quaternion(0.209678, 0.103497, -0.00396453, 0.97227)
-bones/17/rotation = Quaternion(0.0456046, 0.0753898, -0.0232046, 0.99584)
-bones/20/rotation = Quaternion(0.963751, -0.0984194, -0.0943294, 0.229347)
-bones/21/rotation = Quaternion(0.442648, -0.0825528, -0.0262002, 0.892503)
-bones/22/rotation = Quaternion(-0.317942, -0.0321995, 0.068638, 0.945074)
-bones/24/rotation = Quaternion(0.832679, -0.129742, 0.0711892, 0.533615)
-bones/25/rotation = Quaternion(0.533509, 0.0131837, 0.0788249, 0.84201)
-bones/26/rotation = Quaternion(-0.0704189, 0.199305, -0.0649235, 0.975245)
+bones/1/rotation = Quaternion(0.0408524, 0.0331577, -0.0546883, 0.997116)
+bones/2/rotation = Quaternion(-0.0992411, -0.00665343, 0.0072433, 0.995015)
+bones/3/rotation = Quaternion(0.0477801, -0.00706555, 0.00545863, 0.998818)
+bones/4/rotation = Quaternion(0.212319, -0.00404553, -0.00246306, 0.977189)
+bones/5/rotation = Quaternion(-0.152828, -0.00420883, -0.00187144, 0.988242)
+bones/6/rotation = Quaternion(-0.111586, -0.063357, 0.0492934, 0.990507)
+bones/9/rotation = Quaternion(0.129374, 0.755919, -0.330599, 0.550049)
+bones/10/rotation = Quaternion(0.684624, -0.0771418, 0.0129448, 0.724687)
+bones/11/rotation = Quaternion(0.0837345, -0.104971, 0.131049, 0.98224)
+bones/12/rotation = Quaternion(-0.00512037, 0.68817, 0.114805, 0.71639)
+bones/15/rotation = Quaternion(-0.0249754, -0.762456, 0.459796, 0.454559)
+bones/16/rotation = Quaternion(0.700007, 0.0755786, -0.0132356, 0.710002)
+bones/17/rotation = Quaternion(0.0982159, -0.0762694, -0.20382, 0.971079)
+bones/18/rotation = Quaternion(-0.00511904, -0.688162, -0.114805, 0.716398)
+bones/20/rotation = Quaternion(0.927148, 0.0189505, -0.100043, 0.360597)
+bones/21/rotation = Quaternion(0.616147, -0.0526241, -0.0786211, 0.781928)
+bones/22/rotation = Quaternion(-0.338798, -0.0726078, 0.104677, 0.932195)
+bones/24/rotation = Quaternion(0.823598, -0.0775774, 0.0999067, 0.55289)
+bones/25/rotation = Quaternion(0.642448, 0.0143291, -0.000400325, 0.766196)
+bones/26/rotation = Quaternion(-0.142205, 0.150705, -0.0244449, 0.977992)
 
 [node name="Skin2" parent="metarig/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_t7qq5")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Twist Dance"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_oa17m")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_87m3o")

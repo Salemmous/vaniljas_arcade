@@ -18,6 +18,8 @@ const CAMERA_MOUSE_TWEAK_SPEED = 0.0003
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var can_double_jump = false
+
 func process_actions(delta: float, actions: CharacterActions) -> CharacterActions:
 	if ControlBlocker.are_controls_blocked():
 		actions.velocity.x = move_toward(actions.velocity.x, 0, speed)
@@ -34,9 +36,15 @@ func process_actions(delta: float, actions: CharacterActions) -> CharacterAction
 	
 	
 	# Handle Jump.
+	if Input.is_action_just_pressed(jump_input_name) and can_double_jump:
+		actions.started_jump = true
+		actions.velocity.y = jump_velocity
+		can_double_jump = false
+		
 	if Input.is_action_pressed(jump_input_name) and actions.is_on_ground:
 		actions.started_jump = true
 		actions.velocity.y = jump_velocity
+		can_double_jump = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Characters/State/Fall.gd" id="9_vbo6w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcp1c"]
+height = 2.09349
 
 [node name="CharacterController" type="CharacterBody3D"]
 collision_mask = 3
@@ -40,6 +41,10 @@ script = ExtResource("7_cswjn")
 script = ExtResource("7_nvq0x")
 pawn = NodePath("../../Vanilja")
 
+[node name="TimeBeforeFallOnSpawn" type="Timer" parent="State/Movement"]
+wait_time = 0.5
+autostart = true
+
 [node name="Jump" type="Node3D" parent="State" node_paths=PackedStringArray("pawn")]
 script = ExtResource("8_6xnx4")
 pawn = NodePath("../../Vanilja")
@@ -62,3 +67,5 @@ margin = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.281213, 5.44081)
 script = ExtResource("6_5kfi2")
 look_at_target = NodePath("../..")
+
+[connection signal="timeout" from="State/Movement/TimeBeforeFallOnSpawn" to="State/Movement" method="_on_time_before_fall_on_spawn_timeout"]

@@ -22,7 +22,6 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	var actions :=  CharacterActions.new()
 	actions.is_on_ground = is_on_floor()
 	actions.velocity = velocity

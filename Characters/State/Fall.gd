@@ -12,6 +12,8 @@ func enter(_previous: CharacterState) -> void:
 
 
 func process_actions(_delta: float, actions: CharacterActions, parent: CharacterState) -> CharacterActions:
+	if actions.started_jump:
+		parent.change_state("Jump")
 	if actions.is_on_ground:
 		parent.change_state("Land")
 	return actions

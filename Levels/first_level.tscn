@@ -23,9 +23,10 @@ background_mode = 2
 background_color = Color(0.466667, 0.756863, 0.901961, 1)
 sky = SubResource("Sky_pn6my")
 ambient_light_color = Color(0.517647, 0.517647, 0.517647, 1)
-ambient_light_sky_contribution = 0.0
+ambient_light_sky_contribution = 0.3
 ambient_light_energy = 2.65
 tonemap_mode = 2
+fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0dn2u"]
 
