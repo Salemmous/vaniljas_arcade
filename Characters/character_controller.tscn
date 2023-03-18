@@ -1,0 +1,64 @@
+[gd_scene load_steps=13 format=3 uid="uid://khjx2sqf0c6i"]
+
+[ext_resource type="Script" path="res://Characters/CharacterController.gd" id="1_rdvp5"]
+[ext_resource type="PackedScene" uid="uid://b7skhscni4wqg" path="res://Characters/Vanilja/vanilja.tscn" id="2_0p1lu"]
+[ext_resource type="Script" path="res://Characters/Controllers/CharacterActionController.gd" id="3_u84tg"]
+[ext_resource type="Script" path="res://Characters/Controllers/CharacterGravityController.gd" id="4_exju7"]
+[ext_resource type="Script" path="res://Characters/Controllers/CharacterInputActionController.gd" id="5_xnjym"]
+[ext_resource type="Script" path="res://Characters/CharacterCamera.gd" id="6_5kfi2"]
+[ext_resource type="Script" path="res://Characters/State/CharacterState.gd" id="7_cswjn"]
+[ext_resource type="Script" path="res://Characters/State/Movement.gd" id="7_nvq0x"]
+[ext_resource type="Script" path="res://Characters/State/Jump.gd" id="8_6xnx4"]
+[ext_resource type="Script" path="res://Characters/State/Land.gd" id="9_ik1lh"]
+[ext_resource type="Script" path="res://Characters/State/Fall.gd" id="9_vbo6w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pcp1c"]
+
+[node name="CharacterController" type="CharacterBody3D"]
+collision_mask = 3
+script = ExtResource("1_rdvp5")
+
+[node name="Vanilja" parent="." instance=ExtResource("2_0p1lu")]
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.022)
+shape = SubResource("CapsuleShape3D_pcp1c")
+
+[node name="Actions" type="Node3D" parent="."]
+script = ExtResource("3_u84tg")
+
+[node name="Gravity" type="Node3D" parent="Actions"]
+script = ExtResource("4_exju7")
+
+[node name="Input" type="Node3D" parent="Actions"]
+script = ExtResource("5_xnjym")
+
+[node name="State" type="Node3D" parent="."]
+script = ExtResource("7_cswjn")
+
+[node name="Movement" type="Node3D" parent="State" node_paths=PackedStringArray("pawn")]
+script = ExtResource("7_nvq0x")
+pawn = NodePath("../../Vanilja")
+
+[node name="Jump" type="Node3D" parent="State" node_paths=PackedStringArray("pawn")]
+script = ExtResource("8_6xnx4")
+pawn = NodePath("../../Vanilja")
+
+[node name="Fall" type="Node3D" parent="State" node_paths=PackedStringArray("pawn")]
+script = ExtResource("9_vbo6w")
+pawn = NodePath("../../Vanilja")
+
+[node name="Land" type="Node3D" parent="State" node_paths=PackedStringArray("pawn")]
+script = ExtResource("9_ik1lh")
+pawn = NodePath("../../Vanilja")
+
+[node name="CameraSpring" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.895494, 0.445073, 0, -0.445073, 0.895494, 0, 1.671, 0)
+collision_mask = 2
+spring_length = 5.0
+margin = 0.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraSpring" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.281213, 5.44081)
+script = ExtResource("6_5kfi2")
+look_at_target = NodePath("../..")

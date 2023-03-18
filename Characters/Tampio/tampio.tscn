@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwnxpvpfan6ik"]
+
+[ext_resource type="PackedScene" uid="uid://j0in8rw63qig" path="res://Characters/Tampio/tampio.glb" id="1_5mdxf"]
+
+[node name="tampio" instance=ExtResource("1_5mdxf")]
+
+[node name="Skeleton3D" parent="metarig" index="0"]
+bones/0/position = Vector3(0, 1.1423, -0.0552)
+bones/1/rotation = Quaternion(-0.0524361, 0, 0, 0.998624)
+bones/5/rotation = Quaternion(0.0537887, 0, 0, 0.998552)
+bones/9/rotation = Quaternion(-0.171365, 0.704842, -0.53177, 0.437096)
+bones/10/rotation = Quaternion(0.0504816, -0.121119, -0.121011, 0.98394)
+bones/12/rotation = Quaternion(-0.0265845, 0.683707, 0.124758, 0.718522)
+bones/13/rotation = Quaternion(0.131046, 0.0129818, 0.0455972, 0.990242)
+bones/15/rotation = Quaternion(-0.205389, -0.714662, 0.557402, 0.369293)
+bones/16/rotation = Quaternion(0.0630476, 0.0923717, 0.062033, 0.991789)
+bones/18/rotation = Quaternion(0.0300185, -0.680976, -0.151097, 0.715919)
+bones/20/rotation = Quaternion(0.985635, 0.00445315, -0.00419479, 0.16878)
+bones/21/rotation = Quaternion(0.0595691, 0.00469171, 0.00961749, 0.998167)
+bones/24/rotation = Quaternion(0.985635, -0.00445305, 0.00419564, 0.16878)
+bones/25/rotation = Quaternion(0.0595691, -0.00469172, -0.00961748, 0.998167)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Look Down"

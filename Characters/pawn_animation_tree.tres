@@ -1,0 +1,58 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=12 format=3 uid="uid://dvruqnbdo8f3g"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0lwe"]
+animation = &"Falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_upt8d"]
+animation = &"Jump Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y1yh7"]
+animation = &"Jump Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5lgbw"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rkmhh"]
+animation = &"Walking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_omkhe"]
+animation = &"Fast Run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ajk18"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5lgbw")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_rkmhh")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_omkhe")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j6rgy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aejwm"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rl3o5"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ar2w1"]
+xfade_time = 1.0
+advance_mode = 0
+
+[resource]
+states/Falling/node = SubResource("AnimationNodeAnimation_i0lwe")
+states/Falling/position = Vector2(757, 167)
+"states/Jump Down/node" = SubResource("AnimationNodeAnimation_upt8d")
+"states/Jump Down/position" = Vector2(291, 192)
+"states/Jump Up/node" = SubResource("AnimationNodeAnimation_y1yh7")
+"states/Jump Up/position" = Vector2(608, 167)
+states/Movement/node = SubResource("AnimationNodeBlendSpace1D_ajk18")
+states/Movement/position = Vector2(511, 94)
+transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_j6rgy"), "Jump Up", "Falling", SubResource("AnimationNodeStateMachineTransition_aejwm"), "Jump Down", "Movement", SubResource("AnimationNodeStateMachineTransition_rl3o5"), "Movement", "Jump Up", SubResource("AnimationNodeStateMachineTransition_ar2w1")]
+graph_offset = Vector2(-57, -6)
