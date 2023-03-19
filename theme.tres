@@ -1,0 +1,79 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://jdeju61gg57g"]
+
+[ext_resource type="FontFile" uid="uid://g8uw5qs5j8tr" path="res://Fonts/Poppins/Poppins-Medium.ttf" id="1_1xc4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs2so"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.952941, 0.913725, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf1ub"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.941176, 0.756863, 0.513726, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4calp"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.976471, 0.878431, 0.729412, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2rx8"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.921569, 0.905882, 0.709804, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4slks"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.92549, 0.72549, 0.458824, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+default_font = ExtResource("1_1xc4n")
+Button/colors/font_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+Button/colors/font_disabled_color = Color(0.0980392, 0.0980392, 0.0980392, 0.501961)
+Button/colors/font_focus_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+Button/colors/font_hover_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+Button/colors/font_hover_pressed_color = Color(0.12549, 0.12549, 0.12549, 1)
+Button/colors/font_outline_color = Color(0.168627, 0.168627, 0.168627, 1)
+Button/colors/font_pressed_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/icon_disabled_color = Color(0.109804, 0.109804, 0.109804, 0.4)
+Button/colors/icon_focus_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+Button/colors/icon_hover_color = Color(0.101961, 0.101961, 0.101961, 1)
+Button/colors/icon_hover_pressed_color = Color(0.109804, 0.109804, 0.109804, 1)
+Button/colors/icon_normal_color = Color(0.129412, 0.129412, 0.129412, 1)
+Button/colors/icon_pressed_color = Color(0.109804, 0.109804, 0.109804, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_qs2so")
+Button/styles/focus = SubResource("StyleBoxFlat_rf1ub")
+Button/styles/hover = SubResource("StyleBoxFlat_4calp")
+Button/styles/normal = SubResource("StyleBoxFlat_t2rx8")
+Button/styles/pressed = SubResource("StyleBoxFlat_4slks")

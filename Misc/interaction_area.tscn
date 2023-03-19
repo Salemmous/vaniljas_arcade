@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://6045ostqg8u"]
+[gd_scene load_steps=4 format=3 uid="uid://6045ostqg8u"]
 
 [ext_resource type="Script" path="res://Misc/InteractionArea.gd" id="1_ux5uk"]
+[ext_resource type="Theme" uid="uid://jdeju61gg57g" path="res://theme.tres" id="2_pmp74"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti665"]
 bg_color = Color(0.976471, 0.976471, 0.976471, 1)
@@ -48,6 +49,7 @@ offset_right = 20.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_pmp74")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 text = "E"

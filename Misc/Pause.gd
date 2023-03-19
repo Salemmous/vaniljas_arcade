@@ -1,5 +1,5 @@
 class_name Pause
-extends Panel
+extends CanvasLayer
 
 const OTHER_AUDIO_BUSES := ["Background"]
 

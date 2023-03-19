@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cal36r1ct7iee"]
+
+[ext_resource type="Script" path="res://Misc/Pause.gd" id="1_mb3fj"]
+[ext_resource type="Theme" uid="uid://jdeju61gg57g" path="res://theme.tres" id="2_a1old"]
+[ext_resource type="AudioStream" uid="uid://b7cellgy7cncb" path="res://Music/Pixabay-playfull-AudioCoffee.mp3" id="3_vw5qw"]
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_mb3fj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.517647)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_a1old")
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Jatka"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Poistu"
+
+[node name="PauseMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vw5qw")
+volume_db = -20.0
+bus = &"Pause"
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

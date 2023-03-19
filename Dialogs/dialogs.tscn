@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnams7sokc1xf"]
+[gd_scene load_steps=4 format=3 uid="uid://cnams7sokc1xf"]
 
 [ext_resource type="Script" path="res://Dialogs/DialogController.gd" id="1_083x3"]
+[ext_resource type="Theme" uid="uid://jdeju61gg57g" path="res://theme.tres" id="2_5e28f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydvnx"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.419608)
@@ -50,6 +51,7 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_5e28f")
 text = "Tämä on testi"
 scroll_active = false
 

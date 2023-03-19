@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfat616ro3cm1"]
+[gd_scene load_steps=18 format=3 uid="uid://bfat616ro3cm1"]
 
 [ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="1_bftju"]
 [ext_resource type="Script" path="res://Levels/FirstLevel.gd" id="1_ti2ln"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dippt0egnecjl" path="res://Misc/pit.tscn" id="7_7i8sk"]
 [ext_resource type="PackedScene" uid="uid://ylfleu4m3bbn" path="res://Misc/fader.tscn" id="8_u0ok6"]
 [ext_resource type="PackedScene" uid="uid://defbqu34lmlk2" path="res://Chips/chips.tscn" id="9_amjqo"]
-[ext_resource type="Script" path="res://Misc/Pause.gd" id="10_pwuu0"]
-[ext_resource type="AudioStream" uid="uid://b7cellgy7cncb" path="res://Music/Pixabay-playfull-AudioCoffee.mp3" id="11_svnc5"]
+[ext_resource type="PackedScene" uid="uid://cal36r1ct7iee" path="res://Misc/pause.tscn" id="10_nn04m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pqf8w"]
 sky_top_color = Color(0.341176, 0.87451, 0.94902, 1)
@@ -46,20 +45,6 @@ size = Vector3(3.55761, 4.50094, 3.27192)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfo0i"]
 radius = 0.997632
 height = 3.32635
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paxth"]
-bg_color = Color(0.941176, 0.85098, 0.611765, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hi2ox"]
-bg_color = Color(0.941176, 0.85098, 0.611765, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [node name="FirstLevel" type="Node3D"]
 script = ExtResource("1_ti2ln")
@@ -125,48 +110,7 @@ offset_top = -128.0
 [node name="chips" parent="." instance=ExtResource("9_amjqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.40604, 0, 34.1159)
 
-[node name="Pause" type="Panel" parent="."]
-process_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_pwuu0")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ContinueButton" type="Button" parent="Pause/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_paxth")
-text = "Jatka"
-
-[node name="QuitButton" type="Button" parent="Pause/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_hi2ox")
-text = "Poistu"
-
-[node name="PauseMusic" type="AudioStreamPlayer" parent="Pause"]
-stream = ExtResource("11_svnc5")
-volume_db = -20.0
-bus = &"Pause"
+[node name="Pause" parent="." instance=ExtResource("10_nn04m")]
 
 [connection signal="interacted" from="Tampio/InteractionArea" to="." method="_on_interaction_area_interacted"]
 [connection signal="player_respawned" from="Pit" to="." method="_on_pit_player_respawned"]
-[connection signal="pressed" from="Pause/VBoxContainer/ContinueButton" to="Pause" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="Pause/VBoxContainer/QuitButton" to="Pause" method="_on_quit_button_pressed"]
