@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b27dqhly2u0b8"]
+
+[ext_resource type="Environment" uid="uid://wwepx6xw1nqe" path="res://world_environment_paradise.tres" id="1_obef4"]
+[ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="2_kaic7"]
+[ext_resource type="PackedScene" uid="uid://cal36r1ct7iee" path="res://Misc/pause.tscn" id="3_r1gle"]
+[ext_resource type="AudioStream" uid="uid://ya08uc6ewj11" path="res://Music/Pixabay-simple-piano-melody-Daddy-s-Music.mp3" id="4_2twwr"]
+[ext_resource type="PackedScene" uid="uid://dippt0egnecjl" path="res://Misc/pit.tscn" id="5_07etj"]
+[ext_resource type="PackedScene" uid="uid://defbqu34lmlk2" path="res://Chips/chips.tscn" id="6_5jvdx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8sf7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwhmk"]
+albedo_color = Color(0.956863, 0.905882, 0.6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhmo8"]
+size = Vector3(2, 0.001, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1pnk"]
+size = Vector3(595.686, 29.0544, 752.409)
+
+[node name="test_level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_obef4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 7.14248, 0)
+light_energy = 1.715
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_8sf7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_nwhmk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_lhmo8")
+
+[node name="CharacterController" parent="." instance=ExtResource("2_kaic7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14687, -4.76837e-07, 2.60759)
+
+[node name="Pause" parent="." instance=ExtResource("3_r1gle")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2twwr")
+volume_db = -20.0
+autoplay = true
+bus = &"Background"
+
+[node name="Pit" parent="." instance=ExtResource("5_07etj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.474771, -79.1341, 1.13032)
+
+[node name="Respawn" type="Node3D" parent="Pit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62164, 79.1341, 1.47727)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pit"]
+shape = SubResource("BoxShape3D_t1pnk")
+
+[node name="Chips" parent="." instance=ExtResource("6_5jvdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7988, -9.53674e-07, -14.4752)
+
+[node name="Chips2" parent="." instance=ExtResource("6_5jvdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.6257, 0.0499994, -44.2875)
+
+[node name="Chips3" parent="." instance=ExtResource("6_5jvdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6047, 0.0499994, 15.4897)
+
+[node name="Chips4" parent="." instance=ExtResource("6_5jvdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8088, 0.0499994, -56.9183)
