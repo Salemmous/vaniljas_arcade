@@ -16,10 +16,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
-	
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_action_pressed("pause"):
-		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	var actions :=  CharacterActions.new()

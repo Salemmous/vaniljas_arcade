@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfat616ro3cm1"]
+[gd_scene load_steps=21 format=3 uid="uid://bfat616ro3cm1"]
 
 [ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="1_bftju"]
 [ext_resource type="Script" path="res://Levels/FirstLevel.gd" id="1_ti2ln"]
@@ -8,6 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://wf0etib3b4uf" path="res://Music/Pixabay-small-miracle-Romarecord1973.mp3" id="6_c1ivn"]
 [ext_resource type="PackedScene" uid="uid://dippt0egnecjl" path="res://Misc/pit.tscn" id="7_7i8sk"]
 [ext_resource type="PackedScene" uid="uid://ylfleu4m3bbn" path="res://Misc/fader.tscn" id="8_u0ok6"]
+[ext_resource type="PackedScene" uid="uid://defbqu34lmlk2" path="res://Chips/chips.tscn" id="9_amjqo"]
+[ext_resource type="Script" path="res://Misc/Pause.gd" id="10_pwuu0"]
+[ext_resource type="AudioStream" uid="uid://b7cellgy7cncb" path="res://Music/Pixabay-playfull-AudioCoffee.mp3" id="11_svnc5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pqf8w"]
 sky_top_color = Color(0.341176, 0.87451, 0.94902, 1)
@@ -27,20 +30,40 @@ ambient_light_sky_contribution = 0.3
 ambient_light_energy = 2.65
 tonemap_mode = 2
 fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_0dn2u"]
+[sub_resource type="FogMaterial" id="FogMaterial_8ef37"]
+density = 0.6
+emission = Color(0.996078, 0.996078, 0.996078, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c4djg"]
+size = Vector3(100, 0.5, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dnxu"]
-size = Vector3(3.55761, 4.50094, 3.95247)
+size = Vector3(3.55761, 4.50094, 3.27192)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfo0i"]
 radius = 0.997632
 height = 3.32635
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paxth"]
+bg_color = Color(0.941176, 0.85098, 0.611765, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hi2ox"]
+bg_color = Color(0.941176, 0.85098, 0.611765, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="FirstLevel" type="Node3D"]
 script = ExtResource("1_ti2ln")
+enable_cinematics = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 7.14248, 0)
@@ -50,37 +73,15 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ql7lb")
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, 0)
-mesh = SubResource("BoxMesh_0dn2u")
-skeleton = NodePath("")
+[node name="Cloud" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 24.0043)
+size = Vector3(100, 0.5, 200)
+material = SubResource("FogMaterial_8ef37")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cloud"]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-shape = SubResource("BoxShape3D_c4djg")
-
-[node name="Ground2" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, 100)
-mesh = SubResource("BoxMesh_0dn2u")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground2"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2/StaticBody3D"]
-shape = SubResource("BoxShape3D_c4djg")
-
-[node name="Ground3" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, -100)
-mesh = SubResource("BoxMesh_0dn2u")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground3"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cloud/StaticBody3D"]
 shape = SubResource("BoxShape3D_c4djg")
 
 [node name="CharacterController" parent="." instance=ExtResource("1_bftju")]
@@ -91,7 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46.7198)
 [node name="InteractionArea" parent="Tampio" instance=ExtResource("5_pwu28")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tampio/InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07942, 2.10942)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07942, 1.3489)
 shape = SubResource("BoxShape3D_7dnxu")
 
 [node name="Tampio" parent="Tampio" instance=ExtResource("2_owc1e")]
@@ -102,10 +103,14 @@ shape = SubResource("BoxShape3D_7dnxu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0583966, 1.40464, 0.373175)
 shape = SubResource("CapsuleShape3D_tfo0i")
 
+[node name="Focal" type="Node3D" parent="Tampio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95351, 0.394154)
+
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_c1ivn")
 volume_db = -30.0
 autoplay = true
+bus = &"Background"
 
 [node name="Pit" parent="." instance=ExtResource("7_7i8sk")]
 
@@ -117,5 +122,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.6271, 46.5641)
 [node name="Dialogs" parent="." instance=ExtResource("3_xpq0t")]
 offset_top = -128.0
 
+[node name="chips" parent="." instance=ExtResource("9_amjqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.40604, 0, 34.1159)
+
+[node name="Pause" type="Panel" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_pwuu0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_paxth")
+text = "Jatka"
+
+[node name="QuitButton" type="Button" parent="Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_hi2ox")
+text = "Poistu"
+
+[node name="PauseMusic" type="AudioStreamPlayer" parent="Pause"]
+stream = ExtResource("11_svnc5")
+volume_db = -20.0
+bus = &"Pause"
+
 [connection signal="interacted" from="Tampio/InteractionArea" to="." method="_on_interaction_area_interacted"]
 [connection signal="player_respawned" from="Pit" to="." method="_on_pit_player_respawned"]
+[connection signal="pressed" from="Pause/VBoxContainer/ContinueButton" to="Pause" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/QuitButton" to="Pause" method="_on_quit_button_pressed"]
