@@ -1,17 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dippt0egnecjl"]
+[gd_scene load_steps=3 format=3 uid="uid://dippt0egnecjl"]
 
 [ext_resource type="Script" path="res://Misc/Pit.gd" id="1_mppyi"]
 [ext_resource type="PackedScene" uid="uid://ylfleu4m3bbn" path="res://Misc/fader.tscn" id="2_ld7hx"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2j60y"]
-size = Vector3(338.047, 6.53113, 490.326)
-
 [node name="Pit" type="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -42.6271, 0)
 script = ExtResource("1_mppyi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_2j60y")
 
 [node name="Fader" parent="." instance=ExtResource("2_ld7hx")]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://defbqu34lmlk2"]
+[gd_scene load_steps=12 format=3 uid="uid://defbqu34lmlk2"]
 
 [ext_resource type="Texture2D" uid="uid://dxyg5rhxyyemx" path="res://Chips/ChipsBag-kettusipsit-vanilja.png" id="1_os2nr"]
 [ext_resource type="Script" path="res://Chips/Chips.gd" id="1_uthdj"]
 [ext_resource type="Script" path="res://Misc/Floater.gd" id="2_y6bte"]
+[ext_resource type="AudioStream" uid="uid://yytixv21kij7" path="res://Sound/freesound-coin-cabled_mess.mp3" id="4_l1ump"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u28ml"]
 resource_name = "Bag"
@@ -44,28 +45,65 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b8j6u")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hsxlg"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, -9.81, 0)
+initial_velocity_max = 5.0
+angular_velocity_max = 150.18
+linear_accel_min = -5.0
+angle_max = 176.7
+scale_min = 0.1
+scale_max = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klir3"]
+albedo_color = Color(0.862745, 0.760784, 0.509804, 1)
+metallic_specular = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_st0dg"]
+material = SubResource("StandardMaterial3D_klir3")
+radial_segments = 7
+rings = 3
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_rn651"]
 size = Vector3(1.86413, 2.67511, 0.631619)
 
 [node name="Chips" type="Node3D"]
 script = ExtResource("1_uthdj")
 
-[node name="Cube" type="MeshInstance3D" parent="."]
+[node name="Bag" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0489507, 0.998801, 0, -0.998801, 0.0489507, 0, 1.61172, 0)
 mesh = SubResource("ArrayMesh_7ic7i")
 skeleton = NodePath("")
 
+[node name="Particles" type="GPUParticles3D" parent="Bag"]
+transform = Transform3D(1, 0, 0, 0, 1, -3.72529e-09, 0, 3.72529e-09, 1, 0, 0, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hsxlg")
+draw_pass_1 = SubResource("SphereMesh_st0dg")
+
 [node name="Floater" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_y6bte")
-target = NodePath("../Cube")
+target = NodePath("../Bag")
 start_offset = 2.0
 amplitude = 0.5
 rotation_speed = 0.3
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area" type="Area3D" parent="."]
+monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
 transform = Transform3D(1, 0, 0, 0, 0.992429, -0.122822, 0, 0.122822, 0.992429, 0, 1.49665, 0)
 shape = SubResource("BoxShape3D_rn651")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="SoundEffect" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_l1ump")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_3d_body_entered"]

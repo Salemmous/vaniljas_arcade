@@ -1,36 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfat616ro3cm1"]
+[gd_scene load_steps=16 format=3 uid="uid://bfat616ro3cm1"]
 
 [ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="1_bftju"]
 [ext_resource type="Script" path="res://Levels/FirstLevel.gd" id="1_ti2ln"]
+[ext_resource type="Environment" uid="uid://wwepx6xw1nqe" path="res://world_environment_paradise.tres" id="2_jil34"]
 [ext_resource type="PackedScene" uid="uid://bwnxpvpfan6ik" path="res://Characters/Tampio/tampio.tscn" id="2_owc1e"]
 [ext_resource type="PackedScene" uid="uid://cnams7sokc1xf" path="res://Dialogs/dialogs.tscn" id="3_xpq0t"]
 [ext_resource type="PackedScene" uid="uid://6045ostqg8u" path="res://Misc/interaction_area.tscn" id="5_pwu28"]
 [ext_resource type="AudioStream" uid="uid://wf0etib3b4uf" path="res://Music/Pixabay-small-miracle-Romarecord1973.mp3" id="6_c1ivn"]
 [ext_resource type="PackedScene" uid="uid://dippt0egnecjl" path="res://Misc/pit.tscn" id="7_7i8sk"]
 [ext_resource type="PackedScene" uid="uid://ylfleu4m3bbn" path="res://Misc/fader.tscn" id="8_u0ok6"]
-[ext_resource type="PackedScene" uid="uid://defbqu34lmlk2" path="res://Chips/chips.tscn" id="9_amjqo"]
 [ext_resource type="PackedScene" uid="uid://cal36r1ct7iee" path="res://Misc/pause.tscn" id="10_nn04m"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pqf8w"]
-sky_top_color = Color(0.341176, 0.87451, 0.94902, 1)
-sky_horizon_color = Color(0.721569, 0.643137, 0.545098, 1)
-ground_bottom_color = Color(0.913725, 0.984314, 0.996078, 1)
-ground_horizon_color = Color(0.721569, 0.643137, 0.545098, 1)
-
-[sub_resource type="Sky" id="Sky_pn6my"]
-sky_material = SubResource("ProceduralSkyMaterial_pqf8w")
-
-[sub_resource type="Environment" id="Environment_ql7lb"]
-background_mode = 2
-background_color = Color(0.466667, 0.756863, 0.901961, 1)
-sky = SubResource("Sky_pn6my")
-ambient_light_color = Color(0.517647, 0.517647, 0.517647, 1)
-ambient_light_sky_contribution = 0.3
-ambient_light_energy = 2.65
-tonemap_mode = 2
-fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
 
 [sub_resource type="FogMaterial" id="FogMaterial_8ef37"]
 density = 0.6
@@ -46,9 +25,11 @@ size = Vector3(3.55761, 4.50094, 3.27192)
 radius = 0.997632
 height = 3.32635
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4cec2"]
+size = Vector3(338.047, 6.53113, 490.326)
+
 [node name="FirstLevel" type="Node3D"]
 script = ExtResource("1_ti2ln")
-enable_cinematics = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 7.14248, 0)
@@ -56,7 +37,7 @@ light_energy = 1.715
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ql7lb")
+environment = ExtResource("2_jil34")
 
 [node name="Cloud" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 24.0043)
@@ -102,13 +83,13 @@ bus = &"Background"
 [node name="Respawn" type="Node3D" parent="Pit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.6271, 46.5641)
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pit"]
+shape = SubResource("BoxShape3D_4cec2")
+
 [node name="Fader" parent="." instance=ExtResource("8_u0ok6")]
 
 [node name="Dialogs" parent="." instance=ExtResource("3_xpq0t")]
 offset_top = -128.0
-
-[node name="chips" parent="." instance=ExtResource("9_amjqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.40604, 0, 34.1159)
 
 [node name="Pause" parent="." instance=ExtResource("10_nn04m")]
 

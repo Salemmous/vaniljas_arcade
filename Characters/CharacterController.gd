@@ -8,8 +8,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var action_controller: CharacterActionController = $Actions
 @onready var state: CharacterState = $State
-@onready var camera_spring := $CameraSpring
-@onready var camera := $CameraSpring/Camera3D
+@onready var camera_spring := $CameraTarget/CameraSpring
+@onready var camera := $CameraTarget/CameraSpring/Camera3D
 @onready var pawn: CharacterPawn = $Vanilja
 @onready var animation_player := $Vanilja/AnimationPlayer
 
