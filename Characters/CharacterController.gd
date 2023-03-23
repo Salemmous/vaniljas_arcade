@@ -13,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var pawn: CharacterPawn = $Vanilja
 @onready var animation_player := $Vanilja/AnimationPlayer
 
+var has_bounced := false
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
@@ -22,8 +24,10 @@ func _physics_process(delta: float) -> void:
 	actions.is_on_ground = is_on_floor()
 	actions.velocity = velocity
 	actions.camera_rotation = camera_spring.rotation
+	actions.started_jump = has_bounced
 	actions = action_controller.process_actions(delta, actions)
 	actions = state.process_actions(delta, actions, null)
+	has_bounced = false
 	
 	velocity = actions.velocity
 	var plane_velocity = Vector3(velocity.x, 0, velocity.z)
@@ -31,3 +35,7 @@ func _physics_process(delta: float) -> void:
 		pawn.transform.basis = pawn.transform.basis.slerp(Basis.looking_at(plane_velocity), delta * character_rotation_speed)
 	move_and_slide()
 	camera_spring.rotation = actions.camera_rotation
+
+func bounce(intensity: float) -> void:
+	has_bounced = true
+	velocity.y = intensity

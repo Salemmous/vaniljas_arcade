@@ -12,7 +12,7 @@ extends Node3D
 @onready var camera: CharacterCamera = character.camera
 
 @onready var tampio: Node3D = $Tampio
-@onready var tampio_focal: Node3D = $Tampio
+@onready var tampio_focal: Node3D = $Tampio/Focal
 @onready var tampio_interaction_area: InteractionArea = $Tampio/InteractionArea
 @onready var tampio_animation_tree: AnimationTree = $Tampio/Tampio/AnimationTree
 @onready var tampio_animation_playback: AnimationNodeStateMachinePlayback = tampio_animation_tree.get("parameters/playback")
@@ -74,10 +74,12 @@ func _on_interaction_area_interacted(_area: InteractionArea):
 	tampio_animation_playback.travel("Look Down")
 	var tween := create_tween()
 	var tampio_target := tampio.global_transform.looking_at(character.global_transform.origin).basis.rotated(Vector3.UP, PI)
-	tween.tween_property(tampio, "rotation", tampio_target.get_euler(), 1)
+	var tampio_rotation := Vector3(0, tampio_target.get_euler().y, 0)
+	tween.tween_property(tampio, "rotation", tampio_rotation, 1)
 	tween.parallel().tween_property(camera_spring, "rotation", tampio_target.rotated(Vector3.UP, PI/5).get_euler(), 1)
 	var character_target := character.pawn.global_transform.looking_at(tampio.global_transform.origin).basis
-	tween.parallel().tween_property(character.pawn, "rotation", character_target.get_euler(), 1)
+	var character_rotation := Vector3(0, character_target.get_euler().y, 0)
+	tween.parallel().tween_property(character.pawn, "rotation", character_rotation, 1)
 	await tween.finished
 	await dialogs.show_dialog(Dialog.following("Tampio: Moi Vanilja.",
 		Dialog.following("Vanilja: Tunnetko minut?",

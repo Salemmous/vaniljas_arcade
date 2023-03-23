@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfat616ro3cm1"]
+[gd_scene load_steps=18 format=3 uid="uid://bfat616ro3cm1"]
 
 [ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="1_bftju"]
 [ext_resource type="Script" path="res://Levels/FirstLevel.gd" id="1_ti2ln"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cnams7sokc1xf" path="res://Dialogs/dialogs.tscn" id="3_xpq0t"]
 [ext_resource type="PackedScene" uid="uid://6045ostqg8u" path="res://Misc/interaction_area.tscn" id="5_pwu28"]
 [ext_resource type="AudioStream" uid="uid://wf0etib3b4uf" path="res://Music/Pixabay-small-miracle-Romarecord1973.mp3" id="6_c1ivn"]
+[ext_resource type="PackedScene" uid="uid://d3kqx52ct55t8" path="res://Misc/bounce.tscn" id="6_w26ir"]
 [ext_resource type="PackedScene" uid="uid://dippt0egnecjl" path="res://Misc/pit.tscn" id="7_7i8sk"]
 [ext_resource type="PackedScene" uid="uid://ylfleu4m3bbn" path="res://Misc/fader.tscn" id="8_u0ok6"]
 [ext_resource type="PackedScene" uid="uid://cal36r1ct7iee" path="res://Misc/pause.tscn" id="10_nn04m"]
@@ -19,17 +20,21 @@ emission = Color(0.996078, 0.996078, 0.996078, 1)
 size = Vector3(100, 0.5, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dnxu"]
-size = Vector3(3.55761, 4.50094, 3.27192)
+size = Vector3(3.55761, 2.27585, 2.72364)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfo0i"]
 radius = 0.997632
 height = 3.32635
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sninj"]
+size = Vector3(1.89422, 0.658115, 1.83223)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4cec2"]
 size = Vector3(338.047, 6.53113, 490.326)
 
 [node name="FirstLevel" type="Node3D"]
 script = ExtResource("1_ti2ln")
+enable_cinematics = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 7.14248, 0)
@@ -58,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 46.7198)
 [node name="InteractionArea" parent="Tampio" instance=ExtResource("5_pwu28")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tampio/InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07942, 1.3489)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54992, 2.72945)
 shape = SubResource("BoxShape3D_7dnxu")
 
 [node name="Tampio" parent="Tampio" instance=ExtResource("2_owc1e")]
@@ -70,7 +75,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0583966, 1.40464, 0.373175)
 shape = SubResource("CapsuleShape3D_tfo0i")
 
 [node name="Focal" type="Node3D" parent="Tampio"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95351, 0.394154)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43488, 0.394154)
+
+[node name="Bounce" parent="Tampio" instance=ExtResource("6_w26ir")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tampio/Bounce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.209391, 0.41853)
+shape = SubResource("BoxShape3D_sninj")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_c1ivn")

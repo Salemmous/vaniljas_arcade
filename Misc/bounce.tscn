@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3kqx52ct55t8"]
+
+[ext_resource type="Script" path="res://Misc/Bounce.gd" id="1_ac4wj"]
+
+[node name="Bounce" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10236, 0)
+monitorable = false
+script = ExtResource("1_ac4wj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

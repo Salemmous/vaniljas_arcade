@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxupgbvn0a1x2"]
+
+[ext_resource type="Environment" uid="uid://duk1iu6pfdss3" path="res://world_environment_fox_island.tres" id="1_pux8e"]
+[ext_resource type="AudioStream" uid="uid://ya08uc6ewj11" path="res://Music/Pixabay-simple-piano-melody-Daddy-s-Music.mp3" id="2_atvyu"]
+[ext_resource type="PackedScene" uid="uid://dtlldaspvcw0i" path="res://Levels/Fox Island/fox_island_map.tscn" id="3_nyaw3"]
+[ext_resource type="PackedScene" uid="uid://khjx2sqf0c6i" path="res://Characters/character_controller.tscn" id="4_wfjhl"]
+[ext_resource type="PackedScene" uid="uid://cal36r1ct7iee" path="res://Misc/pause.tscn" id="5_clc50"]
+[ext_resource type="Material" uid="uid://oelvwd2fdv67" path="res://Misc/water_material.material" id="6_2hd86"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ord7"]
+size = Vector2(1200, 1200)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uvt10"]
+size = Vector2(10, 10)
+
+[node name="fox_island" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_pux8e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 7.14248, 0)
+light_energy = 1.715
+shadow_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_atvyu")
+volume_db = -20.0
+autoplay = true
+bus = &"Background"
+
+[node name="fox island" parent="." instance=ExtResource("3_nyaw3")]
+
+[node name="CharacterController" parent="." instance=ExtResource("4_wfjhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -248.607, 3.54612, 6.82745)
+
+[node name="Pause" parent="." instance=ExtResource("5_clc50")]
+
+[node name="Sea" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("PlaneMesh_7ord7")
+surface_material_override/0 = ExtResource("6_2hd86")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.811237, 0.584717, 0, -0.584717, 0.811237, 0, 0, 0, 1, -285.313, 1.86274, 0)
+mesh = SubResource("PlaneMesh_uvt10")
+surface_material_override/0 = ExtResource("6_2hd86")

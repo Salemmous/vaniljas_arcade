@@ -34,6 +34,8 @@ func process_actions(delta: float, actions: CharacterActions) -> CharacterAction
 	actions.camera_rotation += Vector3(camera_velocity.y, camera_velocity.x, 0) * camera_speed
 	actions.camera_rotation.x = clampf(actions.camera_rotation.x, deg_to_rad(min_clamp_camera), deg_to_rad(max_clamp_camera))
 	
+	if actions.started_jump:
+		can_double_jump = true
 	
 	# Handle Jump.
 	if Input.is_action_just_pressed(jump_input_name) and can_double_jump:
